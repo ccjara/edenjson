@@ -1,0 +1,7 @@
+cmake-*
+
+.idea
+.vscode
+.vs
+*.gch
+*.log
