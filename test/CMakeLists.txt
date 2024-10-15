@@ -8,6 +8,7 @@ enable_testing()
 add_executable(edenjson_test
     json_parser.cxx
     json_value.cxx
+    json_maybe.cxx
 
     ${EDENJSON_SOURCE_DIR}/edenjson.cxx
 )

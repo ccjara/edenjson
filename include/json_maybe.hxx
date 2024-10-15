@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdlib>
+
 namespace edenjson {
 
     template <typename T>
@@ -15,6 +17,13 @@ namespace edenjson {
                 std::abort();
             }
             return *ref_;
+        }
+
+        constexpr const T& value_or(const T& default_value) const {
+            if (has_value()) {
+                return *ref_;
+            }
+            return default_value;
         }
 
         explicit constexpr operator bool() const { return has_value(); }
