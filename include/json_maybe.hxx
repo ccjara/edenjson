@@ -27,9 +27,9 @@ namespace edenjson {
             return default_value;
         }
 
-        constexpr T value_or(T&& default_value) const {
+        constexpr T&& value_or(T&& default_value) const {
             if (has_value()) {
-                return *ref_;
+                return std::move(*ref_);
             }
             return std::move(default_value);
         }
