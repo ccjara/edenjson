@@ -8,6 +8,11 @@ add_library(edenjson STATIC src/edenjson.cxx)
 target_include_directories(edenjson PUBLIC include)
 target_include_directories(edenjson PUBLIC src)
 
-add_subdirectory(test)
+option(EDENJSON_TESTS "Build tests" ON)
 
-enable_testing()
+set(EDENJSON_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+if (EDENJSON_TESTS)
+    add_subdirectory(test)
+    enable_testing()
+endif()
