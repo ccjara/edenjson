@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdlib>
+#include <utility>
 
 namespace edenjson {
 
@@ -24,6 +25,13 @@ namespace edenjson {
                 return *ref_;
             }
             return default_value;
+        }
+
+        constexpr T value_or(T&& default_value) const {
+            if (has_value()) {
+                return *ref_;
+            }
+            return std::move(default_value);
         }
 
         explicit constexpr operator bool() const { return has_value(); }
