@@ -50,8 +50,7 @@ else(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} -Wl,--strip-all")
 endif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 
-
-add_library(edenjson STATIC src/edenjson.cxx)
+add_library(edenjson src/edenjson.cxx)
 
 target_include_directories(edenjson PUBLIC include)
 target_include_directories(edenjson PUBLIC src)
