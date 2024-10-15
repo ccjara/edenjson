@@ -87,7 +87,7 @@ TEST_CASE("property iteration on non object is skipped", "[json_value][unit]") {
     const auto& doc = result.document;
     REQUIRE(doc.is_array());
 
-    for (const auto& [key, value] : doc.each_property()) {
+    for (const auto& _ : doc.each_property()) {
         FAIL();
     }
 }
