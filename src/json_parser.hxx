@@ -194,7 +194,7 @@ namespace edenjson {
             json_array array;
 
             if (try_consume(']')) {
-                error_ = error::closing_bracket_expected;
+                result = json_value(std::move(array));
                 return 0;
             }
 

@@ -3,6 +3,8 @@
 
 namespace edenjson {
     constinit const json_value json_value::json_null;
+    const json_value json_value::json_empty_object = json_value(std::move(json_object{}));
+    const json_value json_value::json_empty_array = json_value(std::move(json_array{}));
 
 	parse_result parse(std::string_view json) {
 		json_parser parser;

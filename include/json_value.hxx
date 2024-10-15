@@ -19,6 +19,9 @@ namespace edenjson {
     class json_value {
     public:
         constinit static const json_value json_null;
+        static const json_value json_empty_object;
+        static const json_value json_empty_array;
+
 
         constexpr explicit json_value() : type_(json_type::null), value_(nullptr) {}
         constexpr explicit json_value(bool value) : type_(json_type::boolean), value_(value) {}
@@ -91,6 +94,32 @@ namespace edenjson {
                 }
             }
             return json_null;
+        }
+
+        [[nodiscard]] constexpr auto each_element() const {
+            struct iterable {
+                const json_array& arr;
+                [[nodiscard]] constexpr auto begin() const { return arr.begin(); }
+                [[nodiscard]] constexpr auto end() const { return arr.end(); }
+            };
+
+            if (is_array()) {
+                return iterable{std::get<json_array>(value_)};
+            }
+            return iterable{std::get<json_array>(json_empty_array.value_)};
+        }
+
+        [[nodiscard]] auto each_property() const {
+            struct iterable {
+                const json_object& obj;
+                [[nodiscard]] auto begin() const { return obj.begin(); }
+                [[nodiscard]] auto end() const { return obj.end(); }
+            };
+
+            if (is_object()) {
+                return iterable{std::get<json_object>(value_)};
+            }
+            return iterable{std::get<json_object>(json_empty_object.value_)};
         }
     private:
         json_type type_;

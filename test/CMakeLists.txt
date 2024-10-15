@@ -9,6 +9,7 @@ set(SRC ${CMAKE_SOURCE_DIR}/src)
 
 add_executable(edenjson_test
     json_parser.cxx
+    json_value.cxx
 
     ${SRC}/edenjson.cxx
 )
